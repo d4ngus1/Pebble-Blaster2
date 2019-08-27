@@ -274,6 +274,45 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9940262}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &12567580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 12567581}
+  - component: {fileID: 12567582}
+  m_Layer: 0
+  m_Name: Audio Listener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &12567581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12567580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 50249846}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &12567582
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12567580}
+  m_Enabled: 1
 --- !u!1 &13553413
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +738,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 12567581}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8124,7 +8164,6 @@ GameObject:
   m_Component:
   - component: {fileID: 819021875}
   - component: {fileID: 819021874}
-  - component: {fileID: 819021873}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8132,14 +8171,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &819021873
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819021872}
-  m_Enabled: 1
 --- !u!20 &819021874
 Camera:
   m_ObjectHideFlags: 0
@@ -18682,7 +18713,7 @@ MonoBehaviour:
   weaponHold: {fileID: 1097933888}
   allGuns:
   - {fileID: 4805051373331570912, guid: ec5c8b865d057bf41820da98c7d76a64, type: 3}
-  - {fileID: 4805051373331570912, guid: 6781e4b8e9da463479a345b2bcbcd168, type: 3}
+  - {fileID: 4805051373331570912, guid: 3cbade331f8f52c4994762ce5645e1b8, type: 3}
   - {fileID: 4805051373331570912, guid: 3cbade331f8f52c4994762ce5645e1b8, type: 3}
 --- !u!1 &2060534534
 GameObject:
