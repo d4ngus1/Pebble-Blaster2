@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public enum AudioChannel { Master, SoundEffect, Music}
-    float masterVolumePercent = 1;
-    float sfxVolumePercent = 1;
-    float musicVolumePercent = 0.2f;
+    public enum AudioChannel { Master, SoundEffect, Music }
+    public float masterVolumePercent { get; private set; }//means that other classes can get the value but wont be able to set it
+    public float sfxVolumePercent { get; private set; }
+    public float musicVolumePercent { get; private set; }
 
     AudioSource sfx2DSource;
     AudioSource[] musicSources;
@@ -46,18 +46,23 @@ public class AudioManager : MonoBehaviour
             newSfx2DSource.transform.parent = transform;
 
             audioListener = FindObjectOfType<AudioListener>().transform;
-            playerT = FindObjectOfType<Player>().transform;
+            if (FindObjectOfType<Player>() != null)
+            {
+                playerT = FindObjectOfType<Player>().transform;
+            }
 
             //load in the players set volume
-            masterVolumePercent = PlayerPrefs.GetFloat("master vol", masterVolumePercent);
-            sfxVolumePercent = PlayerPrefs.GetFloat("sfx vol", sfxVolumePercent);
-            musicVolumePercent = PlayerPrefs.GetFloat("music vol", musicVolumePercent);
+            masterVolumePercent = PlayerPrefs.GetFloat("master vol", 1);
+            sfxVolumePercent = PlayerPrefs.GetFloat("sfx vol", 1);
+            musicVolumePercent = PlayerPrefs.GetFloat("music vol", 1);
+
+            Debug.Log(masterVolumePercent);
         }
     }
 
     private void Update()
     {
-        if(playerT != null)
+        if (playerT != null)
         {
             audioListener.position = playerT.position;
         }
@@ -65,7 +70,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetVolume(float newVolumePercent, AudioChannel channel)
     {
-        switch(channel)
+        switch (channel)
         {
             case AudioChannel.Master:
                 masterVolumePercent = newVolumePercent;
@@ -84,6 +89,7 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat("master vol", masterVolumePercent);
         PlayerPrefs.SetFloat("sfx vol", sfxVolumePercent);
         PlayerPrefs.SetFloat("music vol", musicVolumePercent);
+        PlayerPrefs.Save();
     }
 
     public void PlayMusic(AudioClip clip, float fadeDuration = 1)
