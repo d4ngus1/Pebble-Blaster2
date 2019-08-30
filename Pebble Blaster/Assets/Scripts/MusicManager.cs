@@ -1,23 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
     public AudioClip mainTheme;
     public AudioClip menuTheme;
 
+    string sceneName;
+
     private void Start()
     {
-        AudioManager.instance.PlayMusic(menuTheme, 2);
+        OnLevelWasLoaded(0);
+        //AudioManager.instance.PlayMusic(menuTheme, 2);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnLevelWasLoaded(int sceneIndex)
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        string newSceneName = SceneManager.GetActiveScene().name;
+
+        if(newSceneName != sceneName)
         {
-            AudioManager.instance.PlayMusic(mainTheme, 3);
+            sceneName = newSceneName;
+            Invoke("PlayMusic", 0.2f);//call invoke for when the music mananger is taken over between the scenes
+        }
+    }
+
+    void PlayMusic()
+    {
+        AudioClip clipToPlay = null;
+
+        if(sceneName == "Menu")
+        {
+            clipToPlay = menuTheme;
+        }
+        else if(sceneName == "Game")
+        {
+            clipToPlay = mainTheme;
+        }
+
+        if(clipToPlay != null)
+        {
+            AudioManager.instance.PlayMusic(clipToPlay, 2);
+            Invoke("PlayMusic", clipToPlay.length);//runs a function after a time, so waits for the music to finish and then plays the next track
+                
         }
     }
 }

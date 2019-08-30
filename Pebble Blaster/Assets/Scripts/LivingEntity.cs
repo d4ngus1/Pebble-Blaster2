@@ -6,7 +6,8 @@ using UnityEngine;
 public class LivingEntity : MonoBehaviour, IDamageable
 {
     public float startingHealth;
-    protected float health;//wont be available to other classes and wont appear in the inspector but the drive classes will be able to
+    public float health { get; protected set;}
+    //protected float health;//wont be available to other classes and wont appear in the inspector but the drive classes will be able to
     protected bool dead;
 
     public event System.Action OnDeath;
