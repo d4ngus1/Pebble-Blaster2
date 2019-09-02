@@ -51,6 +51,7 @@ public class Player : LivingEntity
         if(groundPlane.Raycast(ray, out rayDistance))//will return true if it intersepts with the ground plane
         {
             Vector3 point = ray.GetPoint(rayDistance);//returns the point that the ray has hit the plane
+           
             //Debug.DrawLine(ray.origin, point, Color.red);
             controller.LookAt(point);
             crosshairs.transform.position = point;
